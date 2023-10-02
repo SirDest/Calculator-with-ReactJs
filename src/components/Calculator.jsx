@@ -14,7 +14,6 @@ const Calculator = () => {
       <form className="m-auto w-[310px] h-[600px] bg-black px-3 py-8">
         <div className="bg-black w-full h-[35%] flex relative">
           <input
-            type="text"
             className="placeholder:text-white absolute bottom-0 w-full text-[60px] pr-3 py-0 outline-none caret-black bg-black text-right text-white font-light"
             value={result}
             onChange={handleChange}

@@ -24,7 +24,7 @@ const CalcKeyboard = ({ setResult, result }) => {
       const calcResult = eval(result);
       setResult(String(calcResult));
     } catch (error) {
-      setResult("Error");
+      setResult("0");
     }
     // setResult(eval(result).toString());
   };
