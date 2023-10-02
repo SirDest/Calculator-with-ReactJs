@@ -1,7 +1,6 @@
 import React from "react";
 import { FaDivide, FaEquals } from "react-icons/fa6";
-import { BsPlusSlashMinus } from "react-icons/bs";
-import { LiaPercentSolid, LiaTimesSolid } from "react-icons/lia";
+import { LiaTimesSolid } from "react-icons/lia";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const CalcKeyboard = ({ setResult, result }) => {
