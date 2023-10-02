@@ -10,7 +10,7 @@ const Calculator = () => {
   };
 
   return (
-    <div className="w-full h-screen flex bg-red-700">
+    <div className="w-full h-screen flex bg-white">
       <form className="m-auto w-[310px] h-[600px] bg-black px-3 py-8">
         <div className="bg-black w-full h-[35%] flex relative">
           <input

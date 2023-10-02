@@ -7,10 +7,27 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 const CalcKeyboard = ({ setResult, result }) => {
   const buttonClicked = (e) => {
     e.preventDefault();
-    setResult(result.concat(e.target.name));
+    const newValue = e.target.name;
+    setResult(result.concat(newValue));
   };
-  const handleACButton = () => {
+  const handleACButton = (e) => {
+    e.preventDefault();
     setResult("");
+  };
+  const cancelButton = (e) => {
+    e.preventDefault();
+    const newInput = result.slice(0, -1);
+    setResult(newInput);
+  };
+  const calculate = (e) => {
+    e.preventDefault();
+    try {
+      const calcResult = eval(result);
+      setResult(String(calcResult));
+    } catch (error) {
+      setResult("Error");
+    }
+    // setResult(eval(result).toString());
   };
 
   return (
@@ -18,29 +35,28 @@ const CalcKeyboard = ({ setResult, result }) => {
       <div className="w-full h-[20%] bg-black flex justify-center gap-2">
         <button
           onClick={handleACButton}
-          className="w-[25%] bg-[#A5A5A5] h-full rounded-full text-[26px] hover:scale-110 ease-in-out duration-500"
+          className="w-[50%] bg-[#A5A5A5] h-full rounded-full text-white text-[26px] text-left pl-7 hover:scale-110 ease-in-out duration-500"
         >
           AC
         </button>
-        <button
-          onClick={buttonClicked}
-          className="w-[25%] bg-[#A5A5A5] h-full rounded-full flex items-center text-center hover:scale-110 ease-in-out duration-500"
-        >
-          <BsPlusSlashMinus className="m-auto text-[22px]" />
-        </button>
-        <button
-          onClick={buttonClicked}
-          className="w-[25%] bg-[#A5A5A5] h-full rounded-full flex items-center text-center hover:scale-110 ease-in-out duration-500"
-        >
-          <LiaPercentSolid className="m-auto text-[29px]" />
-        </button>
-        <button
-          onClick={buttonClicked}
-          className="w-[25%] bg-[#F89B10] h-full rounded-full text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
-        >
-          <FaDivide className="m-auto text-[22px]" />
-        </button>
+        <div className="flex h-full w-[50%] gap-2">
+          <button
+            onClick={cancelButton}
+            className="w-[50%] bg-[#A5A5A5] h-full rounded-full text-white text-[26px] hover:scale-110 ease-in-out duration-500"
+          >
+            C
+          </button>
+          <button
+            name="/"
+            onClick={buttonClicked}
+            type="submit"
+            className="w-[50%] bg-[#F89B10] h-full rounded-full text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
+          >
+            <FaDivide className="m-auto text-[22px]" />
+          </button>
+        </div>
       </div>
+
       <div className="w-full h-[20%] bg-black flex justify-center gap-2">
         <button
           onClick={buttonClicked}
@@ -64,6 +80,7 @@ const CalcKeyboard = ({ setResult, result }) => {
           9
         </button>
         <button
+          name="*"
           onClick={buttonClicked}
           className="w-[25%] bg-[#F89B10] h-full rounded-full text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
         >
@@ -93,6 +110,7 @@ const CalcKeyboard = ({ setResult, result }) => {
           6
         </button>
         <button
+          name="-"
           onClick={buttonClicked}
           className="w-[25%] bg-[#F89B10] h-full rounded-full text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
         >
@@ -123,12 +141,14 @@ const CalcKeyboard = ({ setResult, result }) => {
           3
         </button>
         <button
+          name="+"
           onClick={buttonClicked}
           className="w-[25%] bg-[#F89B10] h-full rounded-full  text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
         >
           <AiOutlinePlus className="m-auto text-[22px]" />
         </button>
       </div>
+
       <div className="w-full h-[20%] bg-black flex justify-center gap-2">
         <button
           onClick={buttonClicked}
@@ -138,13 +158,14 @@ const CalcKeyboard = ({ setResult, result }) => {
         </button>
         <div className="flex h-full w-[50%] gap-2">
           <button
+            name="."
             onClick={buttonClicked}
             className="w-[50%] bg-[#333333] h-full rounded-full text-white text-[26px] hover:scale-110 ease-in-out duration-500"
           >
             .
           </button>
           <button
-            onClick={buttonClicked}
+            onClick={calculate}
             type="submit"
             className="w-[50%] bg-[#F89B10] h-full rounded-full text-white flex items-center text-center hover:scale-110 ease-in-out duration-500"
           >
